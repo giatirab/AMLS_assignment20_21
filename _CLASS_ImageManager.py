@@ -1,44 +1,16 @@
-# Import Librariesis
+# Import libraries
 import os
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import time
 from PIL import Image
-import sklearn
-
-processing_available=[None, "crop", "crop&Canny"]
-
-#class RandomForestClassifier(sklearn.ensemble.RandomForestClassifier):
-#    
-#    def __init__(self, canny = False, bodypart = None, resize = (72,72)):
-#        self.canny = canny
-#        self.bodypart = bodypart
-#        self.resize = resize
-#    
-#    def process_dataset(self, X):
-#        imgmgr = ImageManager()
-#        imgmgr.images = X
-#        if self.bodypart is not None:
-#            imgmgr.bodypart = self.bodypart
-#            imgmgr.crop_part(self.resize)
-#        if self.canny:
-#            imgmgr.canny_images()
-#        X = imgmgr.images
-#    
-#    def fit(self, X_train, y_train):
-#        return(sklearn.ensemble.RandomForestClassifier.fit(self, self.process_dataset(X_train), y_train))
-#        
-#    def predict(self, X_test):
-#        return(sklearn.ensemble.RandomForestClassifier.predict(self, self.process_dataset(X_test)))
-        
 
 
 class ImageManager:
 
     CLASSIFIERS = {"face"  : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml",
-                   "smile"  : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml",
-                   #"smile" : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_smile.xml",
+                   "smile" : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml",
                    "eyes"  : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_eye.xml"}
     
     def __init__(self):
@@ -58,6 +30,7 @@ class ImageManager:
         return new_function
     
     def count_n_images(self, path, extension):
+        """Returns the number of files within a given folder."""
         list_dir = []
         list_dir = os.listdir(path)
         count = 0
@@ -103,12 +76,15 @@ class ImageManager:
         self.bodypart_classifier = new_bodypart_classifier
     
     def load_images_from_folder(self, folder, extension, colour=cv2.COLOR_BGR2RGB, verbose=False):
+        """The function loads images from a specified local folder. Images need to have the same file extension.
+           The default colour of images is RGB."""
         if verbose:
             print("Starting to load images from {} with extension {}".format(folder, extension))
             start_time = time.time()
         files = sorted(os.listdir(folder), key = lambda x: int(x[:-4]))
         n = self.count_n_images(folder, extension)
-        im0 = np.asarray(cv2.imread(os.path.join(folder, files[0]), colour), np.uint8)
+        path = os.path.join(folder, files[0])
+        im0 = np.asarray(cv2.imread(path, colour), np.uint8)
         shape = im0.shape
         X = np.empty((n, *shape), dtype=np.uint8)
         
@@ -129,12 +105,15 @@ class ImageManager:
         return X
     
     def plot_image(self, image_number):
+        """Plots an image from the loaded set of images."""
         image = self.images[image_number]
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         plt.imshow(rgb, cmap = plt.cm.Spectral)
         plt.show()
         
     def canny_images(self, a = 100, b = 200):
+        """Applies a Canny Edge Detector to the whole set 
+           of images loaded via the ImageManager."""
         canny = []
         for image in self.images:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -143,6 +122,10 @@ class ImageManager:
         return self.images
     
     def crop_part(self, resize_amt, squaring = False, x_offsets=(0,0), y_offsets = (0,0)):
+        """Crops the whole set of images based on the "bodypart" attribute.
+           This needs to be set beforehand by the user. The program will understand which 
+           Haar Cascade classifier to apply based on the "CLASSIFIERS" dictionary.
+           """
         if self.bodypart_classifier is None:
             raise ValueError("You must set a body part before we can crop the images.")
         if len(self.images.shape) == 3:
@@ -151,6 +134,8 @@ class ImageManager:
             new_images = np.empty((len(self.images), *resize_amt, self.images.shape[-1]))
         
         def reduce(bboxes):
+            """Return only one bbox among the many bboxes/rectangulars
+               identified by the classifier."""
             size = 0
             i_max = 0
             for i, box in enumerate(bboxes):
@@ -183,7 +168,7 @@ class ImageManager:
                 c = np.maximum(int(x_new), 0)
                 d = np.minimum(int(x_new+width_new), image.shape[1]-1)
                 
-                im = image[a:b, c:d] # slice di immagine iniziale
+                im = image[a:b, c:d] # slice of images
                 new_img = im.copy()
                 new_img = Image.fromarray(new_img)
             else: 
@@ -195,6 +180,7 @@ class ImageManager:
         return self.images
             
     def resize(self, resize_amt, images = None, setvalue = True):
+        """Resizes the whole set of images loaded, if not passed as input."""
         new_imges = []
         if not images:
             images = self.images
@@ -207,15 +193,5 @@ class ImageManager:
             self.images = res
         return np.array(new_imges)
         
-        
-#folder = "/Users/macbookpro/UCL - MSc Integrated Machine Learning Systems/Y1/Applied Machine Learning I/Final Assignment/AMLS_20-21_SN17024244/Datasets/dataset_AMLS_20-21/celeba/img/"
-#extension = ".jpg"        
-#imgmgr = ImageManager()
-#imgmgr.load_images_from_folder(folder, extension, verbose = True)
-#
-#imgmgr.bodypart = "face"
-##imgmgr.images= imgmgr.images[0:12]
-#imges = imgmgr.crop_part((72,72))
-
 
 
