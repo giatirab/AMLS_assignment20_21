@@ -8,6 +8,8 @@ from PIL import Image
 
 
 class ImageManager:
+    """The role of the class is to manage the loading process of a set of image files. 
+       It can subsequently perform image processing via its methods."""
 
     CLASSIFIERS = {"face"  : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml",
                    "smile" : "/Users/macbookpro/anaconda3/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml",

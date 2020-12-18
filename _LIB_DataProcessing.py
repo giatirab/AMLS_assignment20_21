@@ -7,10 +7,11 @@ import pandas as pd
 
 def preprocessing(settings, verbose):
     """Creates an instance of ImageManager and uses it to load images and
-       applies preprocessing as specified in the settings argument. The 
+       applies pre-processing as specified in the settings argument. The 
        settings must contain:
         
            folder    : The folder containing the images
+           test_folder : The folder containing the test set images
            extension : The image's file extension, such as (.jpg or .png)
            color     : The images's colour used to process the images
            bodypart  : A body part assigned for cropping
@@ -74,7 +75,8 @@ def preprocessing(settings, verbose):
     
 def load_labels(settings):
     """Loads the labels csv file and returns a label vector based on the settings of the
-       task. The label vector is split between train, validation and test sets."""
+       task. The label vector is split between train, validation and test sets.
+    """
     USECOLS = settings["labels_file_columns"]
     train_size, validation_size, test_size = settings["train_size"], settings["validation_size"], settings["test_size"]
     
