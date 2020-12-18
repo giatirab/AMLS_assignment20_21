@@ -2,7 +2,7 @@
 
 - CODEBASE STRUCTURE - 
 
-The folder inlcudes a central main.py file which returns the solution to the four assigned tasks (one classifier for each problem). Running it will print accuracy tables on train, validation and test sets. The file has key dependencies on secondary libraries. These are:
+The folder includes a central main.py file which returns the solution to the four assigned tasks (one classifier for each problem). Running it will print accuracy tables on train, validation and test sets. The file has key dependencies on secondary libraries. These are:
 
 1) _CLASS_ImageManager.py: This script includes a general class which has the purpose of performing the whole set of pre-processing/feature extraction on the dataset. It has some established methods which have very specific purposes (please make use of the help() function if you wish to investigate these methods further):
         
