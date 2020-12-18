@@ -25,7 +25,7 @@ In order to run the four chosen classifiers on the processed datasets and obtain
 
 - HOW TO RUN THE JUPYTER NOTEBOOKS IN A1, A2, B1, B2 FOLDERS
 
-In addition to the .py files described above (which are part of the main.py structure), I have included 4 Jupyter notebooks which have the purpose of presenting the solutions to the project with additional details. They will present the steps that each algorithm is performing and comparing the performance of different classifiers on the same assigned task. The overall structure is simpler then the main.py. Here the Jupyters only depend on _CLASS_ImageManager.py, _CFG_jupyter_A.py and _CFG_jupyter_B.py, which are a mix of libraries and configuration files. To run these files, please go in A1/A2/B1/B2 folders and launch the relevant .ipynb. Then run the blocks sequentially.
+In addition to the .py files described above (which are part of the main.py structure), I have included 4 Jupyter notebooks which have the purpose of presenting the solutions to the project with additional details. They will present the steps that each algorithm is performing and comparing the performance of different classifiers on the same assigned task. The overall structure is simpler then the main.py. Here the Jupyters only depend on _CLASS_ImageManager.py, _CFG_jupyter_A.py and _CFG_jupyter_B.py, which are a mix of libraries and configuration files. To run these files, please go in A1/A2/B1/B2 folders and launch the relevant .ipynb. Then change the path appended (this is where the auxilirary .py files are located) at the top and run the blocks sequentially.
 
 - LIBRARIES NEEDED
 
