@@ -2,7 +2,7 @@
 
 - CODEBASE STRUCTURE - 
 
-The folder includes a central main.py file which returns the solution to the four assigned tasks (one classifier for each problem). Running it will print accuracy tables on train, validation and test sets. The file has key dependencies on secondary libraries. These are:
+The folder includes a central main.py file which returns the solution to the four assigned tasks (one classifier for each problem). Running this file will print accuracy tables on train, validation and test sets. The file has key dependencies on secondary libraries. These are:
 
 1) _CLASS_ImageManager.py: This script includes a general class which has the purpose of performing the whole set of pre-processing/feature extraction on the dataset. It has some established methods which have very specific purposes (please make use of the help() function if you wish to investigate these methods further):
         
@@ -15,7 +15,7 @@ The folder includes a central main.py file which returns the solution to the fou
 
 2) _CFG_A.py & _CFG_B.py: These are the configuration files which contain the repository links as well as attributes we want to pass to the ImageManager class object. The user defines a dictionary of specific settings (which body part we want to crop, how to resize the images, etc). Changing the dictionaries will directly change the pre-processing for each assigned task.
 
-3) _LIB_DataProcessing.py: This script is actually operating the pre-processing and is the algorithm which includes all the necessary steps. In case the test set images have not been added to the celeba/img and cartoon_set/img folders, this step is then performed in the background. Similarly happens for the labels.csv file, where the 2 files are concatenated one below the other. The aim is to have only one repository for the celeba images and for the cartoon_set images. The dictionary in _CFG_A.py and _CFG_B.py will contain the information about how to split before fitting and predicting.
+3) _LIB_DataProcessing.py: This script is actually operating the pre-processing and is the algorithm which includes all the necessary steps. In case the test set images have not been added to the celeba/img and cartoon_set/img folders, this step is then performed in the background. Similarly happens for the labels.csv file, where the 2 files are concatenated one below the other. The aim is to have only one repository for the celeba images and for the cartoon_set images. The dictionary in _CFG_A.py and _CFG_B.py will contain the information about how to split before fitting and predicting steps.
 
 4) _LIB_AuxiliaryFunctions.py: This python file contains some functions which will move and rename the labels.csv and images from the celeba_test and cartoon_set folders onto celeba and cartoon_set folders. Ultimately, we aim at having the datasets and labels in unique subfolders.
 
@@ -25,7 +25,7 @@ In order to run the four chosen classifiers on the processed datasets and obtain
 
 - HOW TO RUN THE JUPYTER NOTEBOOKS IN A1, A2, B1, B2 FOLDERS - 
 
-In addition to the .py files described above (which are part of the main.py structure), I have included 4 Jupyter notebooks which have the purpose of presenting the solutions to the project with additional details. They will present the steps that each algorithm is performing and comparing the performance of different classifiers on the same assigned task. The overall structure is simpler then the main.py. Here the Jupyters only depend on _CLASS_ImageManager.py, _CFG_jupyter_A.py and _CFG_jupyter_B.py, which are a mix of libraries and configuration files. To run these files, please go in A1/A2/B1/B2 folders and launch the .ipynb. Then run the blocks sequentially.
+In addition to the .py files described above (which are part of the main.py structure), I have included 4 Jupyter notebooks which have the purpose of presenting the solutions to the project with additional details. They will present the steps that each algorithm is performing and comparing the performance of different classifiers on the same assigned task. The overall structure is simpler then the main.py. Here the Jupyters only depend on _CLASS_ImageManager.py, _CFG_jupyter_A.py and _CFG_jupyter_B.py, which are a mix of libraries and configuration files. To run these files, please go in A1/A2/B1/B2 folders and launch the relevant .ipynb. Then run the blocks sequentially.
 
 - LIBRARIES NEEDED - 
 
