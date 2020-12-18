@@ -23,11 +23,11 @@ The folder includes a central main.py file which returns the solution to the fou
 
 In order to run the four chosen classifiers on the processed datasets and obtain performance scores, please open the _CFG_A.py and _CFG_B.py files and change the directory paths at the top. These include the location of the repository of the "AMLS_20-21_SN17024244" project. The user can subsequently amend the dictionaries directly and see how a different pre-processing will affect the results. The codebase assumes that the images (for both celeba and cartoon_set) are stored in one unique local folder. If this is not the case, the code will automatically take labels.csv and img files from the "test" folders and move these in celeba/img and cartoon_set/img. The A1 and A2 models (by default) are trained on the first 3750 images, validated on the next 1250 and tested on the last 1000 images (as for celeba). Similarly, the B1 and B2 models (by default) are trained on the first 7500 images, validated on the next 2500 and tested on the last 2500 images (as for cartoon_set).
 
-- HOW TO RUN THE JUPYTER NOTEBOOKS IN A1, A2, B1, B2 FOLDERS
+- HOW TO RUN THE JUPYTER NOTEBOOKS IN A1, A2, B1, B2 FOLDERS?
 
 In addition to the .py files described above (which are part of the main.py structure), I have included 4 Jupyter notebooks which have the purpose of presenting the solutions to the project with additional details. They will present the steps that each algorithm is performing and comparing the performance of different classifiers on the same assigned task. The overall structure is simpler then the main.py. Here the Jupyters only depend on _CLASS_ImageManager.py, _CFG_jupyter_A.py and _CFG_jupyter_B.py, which are a mix of libraries and configuration files. To run these files, please go in A1/A2/B1/B2 folders and launch the relevant .ipynb. Then change the path appended (this is where the auxilirary .py files are located) at the top and run the blocks sequentially.
 
-- LIBRARIES NEEDED
+- LIBRARIES REQUIRED
 
 sklearn
 cv2
